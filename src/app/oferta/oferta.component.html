@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="oferta">
+  <div class="oferta" *ngIf = "oferta !== undefined">
 
     <div class="row">
       <div class="col">
@@ -14,7 +14,7 @@
         </div>
 
         <div class="thumbnails">
-          <img *ngFor="let imagem of oferta.imagem" [src]="imagem.url" />
+          <img *ngFor="let imagem of oferta.imagens" [src]="imagem.url" />
         </div>
       </div>
 
@@ -43,5 +43,30 @@
     </div>
 
   </div>
-  <br/><br/>
+
+  
+  <div class="row" style="margin-top: 25px; margin-bottom: 150px">
+    <div class="col">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="como-usar" data-toggle="tab" href="#como-usar" role="tab" aria-expanded="true">Como usar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="onde-fica" data-toggle="tab" href="#onde-fica" role="tab">Onde fica?</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+
+
+
+
 </div>
+
+
+
+
+
