@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router'
+import { NgModule, LOCALE_ID } from '@angular/core'; //Locale_ID, trabalhar com moedas
+import { HttpModule } from '@angular/http' //requisição http
+import { RouterModule } from '@angular/router' //rotas
+// import { FormsModule } from '@angular/forms' //validar formularios
+import { ReactiveFormsModule } from "@angular/forms"; //Substituto de FormsModule
+import { ROUTES } from './app.routes' //rotas
 
-import { ROUTES } from './app.routes'
 
 import { AppComponent } from './app.component';
 import { TopoComponent } from './topo/topo.component';
@@ -14,6 +16,15 @@ import { DiversaoComponent } from './diversao/diversao.component';
 import { OfertaComponent } from './oferta/oferta.component';
 import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
 import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
+import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
+import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra-sucesso.component';
+
+import {CarrinhoService} from './carrinho.service'
+//pipe
+import { DescricaoReduzida } from './util/descricao-reduzida.pipe';
+
+
+
 
 @NgModule({
   declarations: [
@@ -25,14 +36,19 @@ import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
     DiversaoComponent,
     OfertaComponent,
     ComoUsarComponent,
-    OndeFicaComponent
+    OndeFicaComponent,
+    DescricaoReduzida,
+    OrdemCompraComponent,
+    OrdemCompraSucessoComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule, 
+    HttpModule,
+    // FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [ CarrinhoService,{ provide: LOCALE_ID, useValue: 'pt-Br' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
